@@ -1,22 +1,21 @@
 .App {
   text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  width: 100vw;
+  height: 100vh;
+  background-color: darkslateblue;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-content: center;
 }
 
-.App-link {
-  color: #09d3ac;
+.App main {
+  width: 550px;
+  height: 600px;
+  padding: 40px;
+  flex: 0 0 auto;
+  background-color: dodgerblue;
+  font-family: 'Courier New', Courier, monospace;
+  color: aliceblue;
+  font-weight: 500;
+  font-size: 16px;
 }

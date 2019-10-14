@@ -18,11 +18,11 @@ class App extends React.ReactComponent {
     const {name, terrain, population, climate, films} = await this.getNextPlanet();
     const newPlanet = {
       name,
+      films,
       info: {
         terrain,
         population,
-        climate,
-        films
+        climate
       }
     };
 
@@ -33,7 +33,7 @@ class App extends React.ReactComponent {
     const id = this.getNextId();
     const planet = await fetch(`https://swapi.co/api/planets/${id}`);
 
-    return await planet;
+    return planet;
   }
 
   getNextId() {
@@ -47,11 +47,19 @@ class App extends React.ReactComponent {
  
 
   render() {
+    const films = this.state.planet.films.length;
     return (
       <div className="App">
-        <Display content={this.state.planet.name} />
-        <InfoList list={this.state.planet.infos} />
-        <ActionButton label="Next" handleClick={showNextPlanet} />
+        <main>
+          <header>
+            <Display content={this.state.planet.name} />
+          </header>
+          <InfoList list={this.state.planet.infos} />
+          <p>
+            Appears in {films} {films === 1 ? "film" : "films"}
+          </p>
+          <ActionButton label="Next" handleClick={showNextPlanet} />
+        </main>
       </div>
     );
   }
