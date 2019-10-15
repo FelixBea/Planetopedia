@@ -1,10 +1,10 @@
 import React from 'react';
 import './ActionButton.css';
 
-function ActionButton() {
+function ActionButton(props) {
   return (
-    <button OnClick={this.props.handleClick} type="button" >
-      {this.props.label}
+    <button onClick={props.handleClick} type="button" >
+      {props.label}
     </button>
   );
 }

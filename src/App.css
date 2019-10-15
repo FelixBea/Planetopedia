@@ -4,13 +4,15 @@
   height: 100vh;
   background-color: darkslateblue;
   display: flex;
+  flex-flow: row wrap;
   justify-content: center;
   align-content: center;
+  align-items: center;
 }
 
 .App main {
   width: 550px;
-  height: 600px;
+  max-height: 600px;
   padding: 40px;
   flex: 0 0 auto;
   background-color: dodgerblue;

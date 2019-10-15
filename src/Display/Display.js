@@ -1,12 +1,10 @@
 import React from 'react';
 import './Display.css';
 
-function Display() {
+function Display(props) {
   return (
     <div>
-      <span>
-        {this.props.content}
-      </span>
+      <span>{props.content}</span>
     </div>
   );
 }

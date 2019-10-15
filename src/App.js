@@ -1,13 +1,14 @@
 import React from 'react';
 import './App.css';
-import Display from './Display';
-import InfoList from './InfoList';
-import ActionButton from './ActionButton';
+import Display from './Display/Display.js';
+import InfoList from './InfoList/InfoList.js';
+import ActionButton from './ActionButton/ActionButton.js';
 
-class App extends React.ReactComponent {
+class App extends React.Component {
   constructor() {
     super();
     this.state = { planet:{} };
+    this.showNextPlanet = this.showNextPlanet.bind(this);
   }
 
   componentDidMount() {
@@ -15,17 +16,16 @@ class App extends React.ReactComponent {
   }
 
   async showNextPlanet() {
-    const {name, terrain, population, climate, films} = await this.getNextPlanet();
+    const planet = await this.getNextPlanet();
     const newPlanet = {
-      name,
-      films,
+      name: planet.name,
+      films: planet.films,
       info: {
-        terrain,
-        population,
-        climate
+        terrain: planet.terrain,
+        population: planet.population,
+        climate: planet.climate
       }
     };
-
     this.setState({planet: newPlanet});
   }
 
@@ -33,7 +33,7 @@ class App extends React.ReactComponent {
     const id = this.getNextId();
     const planet = await fetch(`https://swapi.co/api/planets/${id}`);
 
-    return planet;
+    return await planet.json();
   }
 
   getNextId() {
@@ -41,24 +41,25 @@ class App extends React.ReactComponent {
     do {
       randomId = Math.random() * 100;
     } while ((randomId > 61) && (randomId <= 0));
-    
+
     return Math.floor(randomId);
   }
- 
+
 
   render() {
-    const films = this.state.planet.films.length;
+    const films = this.state.planet.films ?
+                  this.state.planet.films.length : 0;
     return (
       <div className="App">
         <main>
           <header>
             <Display content={this.state.planet.name} />
           </header>
-          <InfoList list={this.state.planet.infos} />
+          <InfoList list={this.state.planet.info} />
           <p>
             Appears in {films} {films === 1 ? "film" : "films"}
           </p>
-          <ActionButton label="Next" handleClick={showNextPlanet} />
+          <ActionButton label="Next" handleClick={this.showNextPlanet} />
         </main>
       </div>
     );

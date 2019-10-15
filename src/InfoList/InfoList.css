@@ -1,0 +1,8 @@
+
+ul.info-list {
+  list-style: none;
+  color: inherit;
+  background-color: inherit;
+  font-size: inherit;
+  padding: 0;
+}
