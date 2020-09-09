@@ -31,7 +31,7 @@ class App extends React.Component {
 
   async getNextPlanet() {
     const id = this.getNextId();
-    const planet = await fetch(`https://swapi.co/api/planets/${id}`);
+    const planet = await fetch(`https://swapi.dev/api/planets/${id}`);
 
     return await planet.json();
   }
@@ -40,7 +40,7 @@ class App extends React.Component {
     let randomId;
     do {
       randomId = Math.random() * 100;
-    } while ((randomId > 61) && (randomId <= 0));
+    } while (randomId > 60 || randomId < 1);
 
     return Math.floor(randomId);
   }
